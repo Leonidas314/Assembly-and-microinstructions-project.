@@ -13,16 +13,17 @@
 Start:	
 
  
-
+	load L0
+	
 	loadsi L1
 	loaddi L2
 	copy 
 	stop  		
 
 
-
+L0:  .data 2 4
 L1: .ascii  "Hola"		
-L2:	.data 4 0 ; 
+L2:	.data 4 0
 
 
 
