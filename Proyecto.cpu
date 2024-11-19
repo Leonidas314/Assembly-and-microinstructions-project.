@@ -138,11 +138,15 @@
 
 	<!--............. test ..........................-->
 	<Test name="if(acc!=0)skip-1" register="module.Register7766e2dd" start="0" numBits="16" comparison="NE" value="0" omission="1" id="microinstruction.Test6b3c5419" />
+	<Test name="if(acc==0)skip1" register="module.Register7766e2dd" start="0" numBits="16" comparison="EQ" value="0" omission="1" id="microinstruction.Test72713477" />
 	<Test name="if(acc&gt;=0)skip-1" register="module.Register7766e2dd" start="0" numBits="16" comparison="GE" value="0" omission="1" id="microinstruction.Test220ebaea" />
 
 	<!--............. increment .....................-->
 	<Increment name="Inc2-pc" register="module.Register186700c5" overflowBit="module.ConditionBit32a21c61" delta="2" id="microinstruction.Incrementcdd4476" />
-	<Increment name="dec-acc" register="module.Register7766e2dd" delta="-1" id="microinstruction.Incrementd8d66ac" />
+	<Increment name="dec-acc" register="module.Register7766e2dd" overflowBit="module.ConditionBit32a21c61" delta="-1" id="microinstruction.Incrementd8d66ac" />
+	<Increment name="dec-pc" register="module.Register186700c5" overflowBit="module.ConditionBit32a21c61" delta="-2" id="microinstruction.Increment192fb96c" />
+	<Increment name="inc-di" register="module.Register72bce3b6" overflowBit="module.ConditionBit32a21c61" delta="1" id="microinstruction.Increment7cd42995" />
+	<Increment name="inc-si" register="module.Register714a1617" overflowBit="module.ConditionBit32a21c61" delta="1" id="microinstruction.Increment16eed5eb" />
 
 	<!--............. shift .........................-->
 	<!-- none -->
@@ -217,12 +221,16 @@
 
 	<!--............. machine instructions ..........-->
 
-	<MachineInstruction name="copy" opcode="e" format="op unused" >
+	<MachineInstruction name="strcopy" opcode="e" format="op unused" >
 		<Microinstruction microRef="microinstruction.TransferRtoR7d48eb07" />
 		<Microinstruction microRef="microinstruction.MemoryAccess52e85569" />
-		<Microinstruction microRef="microinstruction.Branch4dd4bc8c" />
 		<Microinstruction microRef="microinstruction.TransferRtoR29089f07" />
 		<Microinstruction microRef="microinstruction.MemoryAccess31d1007d" />
+		<Microinstruction microRef="microinstruction.Increment7cd42995" />
+		<Microinstruction microRef="microinstruction.Increment16eed5eb" />
+		<Microinstruction microRef="microinstruction.Incrementd8d66ac" />
+		<Microinstruction microRef="microinstruction.Test72713477" />
+		<Microinstruction microRef="microinstruction.Increment192fb96c" />
 		<Microinstruction microRef="microinstruction.End5490602f" />
 	</MachineInstruction>
 

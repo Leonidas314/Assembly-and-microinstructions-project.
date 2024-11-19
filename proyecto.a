@@ -17,7 +17,7 @@ Start:
 	
 	loadsi L1
 	loaddi L2
-	copy 
+	strcopy 
 	stop  		
 
 
