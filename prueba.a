@@ -1,0 +1,20 @@
+; .Text
+Start:	
+	load L0
+	
+	loadsrc L1
+	loaddest L2
+	strcopy
+
+	stop  		
+
+;  .Data
+L0:  .data 2 4
+L1: .ascii  "Hola"		
+L2:	.data 4 0
+
+
+
+
+
+

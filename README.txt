@@ -1,10 +1,40 @@
+Integrantes:
+    Debernardi Álvaro       42.890.685
+    Dellafiore León Lucas   39.546.206
 
-Lo primero que hacemos es crear los dos registros necesarios para almacenar temporalmente las direcciones de memoria del arreglo pasado y de la direccion donde va a ser copiado el arreglo.
+CPU Sim version: 
+    3.9.0
 
-Decidimos que los registros fuente (si) y destino (di) tendran un espacio de 16 bits dado que asi tendran la posibilidad de usarse como proposito general.
+Registros added:
 
-Al tener un registro de 16 (si y di) podemos pasar la direccion del mar directamente y saltarnos el paso al registr mdr.
+    si          Source direction
+    di          Destination direction
+    mdr8        8-bit Manipulation
 
-Debemos crear una microinstruccion que limpie lso registros si y di ya que al ser usados en algun proposito general qudaran con 16 bist cargados y luego al usarse como direcciones solo se necesitan 12, lo que puede genera algun problema.
+Instructions added:
 
-Al crear la microinstruccion el "StartBitDest" es 4 cuando el source register es mar, ya que mar es de 12 bits y decidimos ocupar los ultimos doce bits los registros si y di desde el 4 en adelante por CONVENSION. 
+    loadsrc     Store Address in si
+    loaddest    Store Address in di
+    strcpy      Copy String from src to dest
+
+Microinstructions added:
+
+    Memory Access:
+        mdr8->Main[mar]
+        Main[mar]->mdr8
+
+    Increment:
+        Inc1-si 
+        Inc1-di
+        Dec2-pc
+        Dec1-acc
+
+    TransferRTR:
+        di->mar
+        si->mar
+        mar->di
+        mar->si
+
+    Test:
+        if(acc==0)skip-1
+
